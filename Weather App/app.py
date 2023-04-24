@@ -4,6 +4,7 @@ import requests
 # Create main window
 root = tk.Tk()
 root.title("Weather App")
+root.geometry("300x400")
 
 # Create labels and entry for city input
 city_label = tk.Label(root, text="Enter City:")
@@ -31,7 +32,9 @@ air_quality_label.pack()
 
 # Function to update weather information labels
 def update_weather_labels(temperature, humidity, pressure, lightning, rain, wind_speed, snow, air_quality):
-    temperature_label.config(text=f"Temperature: {temperature} °C")
+    temperature_fahrenheit= round((temperature * 9/5) + 32, 2) 
+    temperature_label.config(text=f"Temperature: {temperature_fahrenheit} °F")  
+
     humidity_label.config(text=f"Humidity: {humidity}%")
     pressure_label.config(text=f"Pressure: {pressure} hPa")
     lightning_label.config(text=f"Lightning: {lightning}")
@@ -40,12 +43,12 @@ def update_weather_labels(temperature, humidity, pressure, lightning, rain, wind
     snow_label.config(text=f"Snow (1h): {snow} mm")
     air_quality_label.config(text=f"Air Quality Index: {air_quality}")
 
+
 # Function to get weather data from OpenWeatherMap API
 def get_weather():
     city = city_entry.get()
     city = city.replace(" ", "%20")  # Replace spaces with '%20'
-    #enter api key below in quotes
-    #api_key = 
+    api_key = "2a2f3f5f7828274647633dc6d6b77617"
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric'
     try:
         response = requests.get(url)
