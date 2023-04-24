@@ -11,7 +11,7 @@ def get_weather(city):
         "q": urllib.parse.quote(city),
         "appid": api_key,
         "units": "metric",
-        "exclude": "minutely",  # Exclude minutely weather data
+        "exclude": "minutely",  
     }
     response = requests.get(base_url, params=params)
     data = response.json()
