@@ -32,6 +32,7 @@ def show_weather():
 
 root = tk.Tk()
 root.title("Weather App")
+root.geometry("400x300")  
 
 label = tk.Label(root, text="Enter City:")
 label.pack(pady=10)
