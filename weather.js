@@ -26,7 +26,7 @@ function getWeather() {
 
             weatherInfo.innerHTML = `
 						<p>Temperature (in Celsius): ${temperature} &deg;C</p>
-                        <p>Temperature (in Fahrenheit): ${temp} &deg;C</p>
+                        <p>Temperature (in Fahrenheit): ${temp} &deg;F</p>
 						<p>Humidity: ${humidity}%</p>
 						<p>Pressure: ${pressure} hPa</p>
 						<p>Lightning: ${lightning ? "Yes" : "No"}</p>
@@ -43,3 +43,44 @@ function getWeather() {
 }
 
 document.getElementById("get-weather").addEventListener("click", getWeather);
+
+function autocomplete() {
+    var input = document.getElementById('city');
+    var options = {
+        method: 'GET',
+        url: 'https://nominatim.openstreetmap.org/search',
+        params: {
+            format: 'json',
+            countrycodes: 'us,in', // Limit to US cities
+            limit: 10, // Limit to 10 results
+            featuretype: city,
+            q: input.value // Search query
+        }
+    };
+    axios(options).then(function(response) {
+        var suggestions = response.data.map(function(result) {
+            return result.display_name;
+        });
+        autocompleteDisplay(suggestions);
+    }).catch(function(error) {
+        console.error(error);
+    });
+}
+
+function autocompleteDisplay(suggestions) {
+    var input = document.getElementById('city');
+    var datalist = document.createElement('datalist');
+    datalist.setAttribute('id', 'city-list');
+    suggestions.forEach(function(suggestion) {
+        var option = document.createElement('option');
+        option.setAttribute('value', suggestion);
+        datalist.appendChild(option);
+    });
+    input.setAttribute('list', 'city-list');
+    input.parentNode.insertBefore(datalist, input.nextSibling);
+}
+
+var input = document.getElementById('city');
+input.addEventListener('input', function() {
+    autocomplete();
+});
