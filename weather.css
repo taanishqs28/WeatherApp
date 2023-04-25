@@ -1,0 +1,62 @@
+
+/* Global Styles */
+body {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 30;
+    padding: 0;
+    background-image: url("https://static.vecteezy.com/system/resources/previews/001/226/748/original/colorful-sunset-sky-free-photo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1 {
+    margin-top: 0;
+    color: #333;
+}
+
+/* Form Styles */
+form {
+    margin: 20px 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 10px;
+    width: 300px;
+    color: #333;
+}
+
+button {
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
+/* Weather Info Styles */
+#weather-info {
+    margin-top: 20px;
+    /* background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
+    padding: 20px;
+}
+
+p {
+    margin: 10px 0;
+    color: #333;
+}

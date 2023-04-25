@@ -2,57 +2,15 @@
 <html>
 <head>
     <title>Weather App</title>
+    <link rel="stylesheet" href="weather.css" />
 </head>
 <body>
 <h1>Weather App</h1>
 <label for="city">Enter City:</label>
-<input type="text" id="city">
+<input type="text" id="city" />
 <button id="get-weather">Get Weather</button>
 <div id="weather-info"></div>
 
-<script>
-		const apiKey = "2a2f3f5f7828274647633dc6d6b77617";
-		const url = "http://api.openweathermap.org/data/2.5/weather";
-		const weatherInfo = document.getElementById("weather-info");
-
-		function getWeather() {
-			const city = document.getElementById("city").value;
-			const params = {
-				q: city,
-				appid: apiKey,
-				units: "metric"
-			};
-			const queryString = new URLSearchParams(params).toString();
-			fetch(`${url}?${queryString}`)
-				.then(response => response.json())
-				.then(data => {
-					const temperature = data.main.temp;
-					const humidity = data.main.humidity;
-					const pressure = data.main.pressure;
-					const lightning = data.weather[0].description.includes("lightning");
-					const rain = data.rain ? data.rain["1h"] : 0;
-					const windSpeed = data.wind ? data.wind.speed : 0;
-					const snow = data.snow ? data.snow["1h"] : 0;
-					const airQuality = data.aqi && data.aqi["us-epa"] ? data.aqi["us-epa"].aqi : "N/A";
-
-					weatherInfo.innerHTML = `
-						<p>Temperature: ${temperature} &deg;C</p>
-						<p>Humidity: ${humidity}%</p>
-						<p>Pressure: ${pressure} hPa</p>
-						<p>Lightning: ${lightning ? "Yes" : "No"}</p>
-						<p>Rain (1h): ${rain} mm</p>
-						<p>Wind Speed: ${windSpeed} m/s</p>
-						<p>Snow (1h): ${snow} mm</p>
-						<p>Air Quality Index: ${airQuality}</p>
-					`;
-				})
-				.catch(error => {
-					weatherInfo.textContent = "Error: Failed to fetch weather data";
-					console.error(error);
-				});
-		}
-
-		document.getElementById("get-weather").addEventListener("click", getWeather);
-	</script>
+<script src="weather.js" />
 </body>
 </html>
