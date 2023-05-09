@@ -1,5 +1,5 @@
 const apiKey = "2a2f3f5f7828274647633dc6d6b77617";
-const url = "http://api.openweathermap.org/data/2.5/weather";
+const url = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather";
 const weatherInfo = document.getElementById("weather-info");
 
 function getWeather() {
